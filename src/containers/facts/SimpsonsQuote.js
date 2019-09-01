@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Quote from '../../components/quote/Quote';
 import { fetchQuote } from '../../actions/simpsons';
 import { getQuote, getCharacterName, getCharacterImage } from '../../selectors/simpsons';
+import Load from '../../components/quote/Load';
 
 class SimpsonsQuote extends Component {
   static propTypes ={
@@ -18,12 +19,17 @@ class SimpsonsQuote extends Component {
   }
   
   render() {
-    const { quote, characterName, characterImage } = this.props;
-    return <Quote 
-      quote={quote} 
-      characterName={characterName} 
-      characterImage={characterImage} 
-    />;
+    const { quote, characterName, characterImage, fetch } = this.props;
+    return (
+      <>
+        <Load fetch={fetch} />
+        <Quote 
+          quote={quote} 
+          characterName={characterName} 
+          characterImage={characterImage} 
+        />
+      </>
+    );
   }
 }
 
