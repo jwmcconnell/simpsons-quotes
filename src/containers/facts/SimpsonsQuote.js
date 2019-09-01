@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Quote from '../../components/quote/Quote';
 import { fetchQuote } from '../../actions/simpsons';
-import { getQuote, getCharacterName, getCharacterImage } from '../../selectors/simpsons';
+import { getQuote, getCharacterName, getCharacterImage, getLoading } from '../../selectors/simpsons';
 import Load from '../../components/quote/Load';
 
 class SimpsonsQuote extends Component {
@@ -11,7 +11,8 @@ class SimpsonsQuote extends Component {
     fetch: PropTypes.func.isRequired,
     quote: PropTypes.string.isRequired,
     characterName: PropTypes.string.isRequired,
-    characterImage: PropTypes.string.isRequired
+    characterImage: PropTypes.string.isRequired,
+    loading: PropTypes.bool.isRequired
   }
 
   componentDidMount() {
@@ -19,8 +20,8 @@ class SimpsonsQuote extends Component {
   }
   
   render() {
-    const { quote, characterName, characterImage, fetch } = this.props;
-    return (
+    const { quote, characterName, characterImage, fetch, loading } = this.props;
+    return loading ? <h2>Loading</h2> : (
       <>
         <Load fetch={fetch} />
         <Quote 
@@ -36,13 +37,12 @@ class SimpsonsQuote extends Component {
 const mapStateToProps = state => ({
   quote: getQuote(state),
   characterName: getCharacterName(state),
-  characterImage: getCharacterImage(state)
+  characterImage: getCharacterImage(state),
+  loading: getLoading(state)
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetch() {
-    dispatch(fetchQuote());
-  }
+  fetch: () => dispatch(fetchQuote())
 });
 
 export default connect(

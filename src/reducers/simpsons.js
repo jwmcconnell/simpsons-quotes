@@ -1,7 +1,7 @@
 import { FETCH_QUOTE, FETCH_QUOTE_LOADING, FETCH_QUOTE_ERROR } from '../actions/simpsons';
 
 const initialState = {
-  qoute: '',
+  quote: '',
   characterName: '',
   characterImage: '',
   error: null,
