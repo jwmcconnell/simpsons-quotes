@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Quote from '../../components/quote/Quote';
-import { fetchQuote } from '../../actions/simpsons';
 import { getQuote, getCharacterName, getCharacterImage, getLoading } from '../../selectors/simpsons';
 import Load from '../../components/quote/Load';
+import { withFetch } from '../withFetch';
 
 class SimpsonsQuote extends Component {
   static propTypes ={
@@ -41,11 +41,7 @@ const mapStateToProps = state => ({
   loading: getLoading(state)
 });
 
-const mapDispatchToProps = dispatch => ({
-  fetch: () => dispatch(fetchQuote())
-});
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
-)(SimpsonsQuote);
+  null
+)(withFetch(SimpsonsQuote));
