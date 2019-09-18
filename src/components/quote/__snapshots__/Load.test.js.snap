@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Load component renders Load 1`] = `
+<button
+  onClick={[Function]}
+>
+  Load
+</button>
+`;

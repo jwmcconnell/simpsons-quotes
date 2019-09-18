@@ -1,7 +1,7 @@
 import { FETCH_QUOTE, FETCH_QUOTE_LOADING, FETCH_QUOTE_ERROR } from '../actions/simpsons';
 
 const initialState = {
-  qoute: '',
+  quote: '',
   characterName: '',
   characterImage: '',
   error: null,
@@ -19,9 +19,9 @@ export default function reducer(state = initialState, action) {
         ...state, 
         error: null, 
         loading: false,
-        quote: action.payload.quote,
-        characterName: action.payload.character,
-        characterImage: action.payload.image
+        quote: action.payload[0].quote,
+        characterName: action.payload[0].character,
+        characterImage: action.payload[0].image
       };
     default:
       return state;
